@@ -45,7 +45,7 @@ const Total = ({total}) => {
 const Part = ({title, exercises}) => {
   return (
     <>
-      <p>{title} {exercises}</p>
+      <p>{title}: {exercises}</p>
     </>
   )
 }
