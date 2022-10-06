@@ -1,24 +1,25 @@
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
-  const totalExercises = part1.exercises + part2.exercises + part3.exercises
+  const parts = [
+    {
+      name:'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
 
   return (
     <>
       <Header course={course} />
-      <Content part1={part1} part2={part2} part3={part3} />
-      <Total total={totalExercises} />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </>
   )
 }
@@ -31,7 +32,11 @@ const Header = ({course}) => {
   )
 }
 
-const Content = ({part1, part2, part3}) => {
+const Content = ({parts}) => {
+  const part1 = parts[0]
+  const part2 = parts[1]
+  const part3 = parts[2]
+  
   return (
     <>
       <Part title={part1.name} exercises={part1.exercises} />
@@ -41,7 +46,8 @@ const Content = ({part1, part2, part3}) => {
   )
 }
 
-const Total = ({total}) => {
+const Total = ({parts}) => {
+  const total = parts.map(d => d.exercises).reduce((a,b) => a + b)
   return (
     <>
       <p>Number of exercises: {total}</p>
